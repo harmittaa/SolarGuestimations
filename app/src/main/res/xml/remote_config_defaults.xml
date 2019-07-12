@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- START xml_defaults -->
+<defaultsMap>
+    <entry>
+        <key>weather_key</key>
+        <value>"def key"</value>
+    </entry>
+</defaultsMap>
+<!-- END xml_defaults -->
