@@ -10,9 +10,14 @@ import com.github.harmittaa.solarguestimations.R
 import com.github.harmittaa.solarguestimations.databinding.ActivityMainBinding
 import com.github.harmittaa.solarguestimations.feature.forecast.ForecastFragment
 import com.github.harmittaa.solarguestimations.persistence.ApiKeyPreferences
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.dsl.module
+
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var viewModel: MainActivityViewModel
+    private lateinit var mainActivityViewModel: MainActivityViewModel
+
     private val stateObserver = Observer<LandingState> {
         when (it!!) {
             LandingState.ERROR -> showError()
@@ -24,10 +29,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this
-        viewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
-        viewModel.landingState.observe(this, stateObserver)
-        binding.viewmodel = viewModel
-        viewModel.onCreate(ApiKeyPreferences(this))
+        mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
+        mainActivityViewModel.landingState.observe(this, stateObserver)
+        binding.viewmodel = mainActivityViewModel
+        mainActivityViewModel.onCreate(ApiKeyPreferences(this))
     }
 
     private fun showError() {

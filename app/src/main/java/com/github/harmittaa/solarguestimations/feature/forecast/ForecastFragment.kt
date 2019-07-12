@@ -7,14 +7,22 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import com.github.harmittaa.solarguestimations.R
 import com.github.harmittaa.solarguestimations.model.Forecast
+import com.github.harmittaa.solarguestimations.repository.ForecastRepository
+import okhttp3.internal.Internal.instance
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.context.GlobalContext.get
+import org.koin.dsl.module
 import timber.log.Timber
 
 class ForecastFragment : Fragment() {
     private val forecastViewModel by viewModels<ForecastViewModel>()
+
     private val observer = Observer<Forecast> {
-        Timber.d("Viewmodel: observer")
+        Timber.d("Response received")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

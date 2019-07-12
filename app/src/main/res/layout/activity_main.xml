@@ -18,7 +18,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:visibility="@{viewmodel.spinnerVisibility, default=visible}"
+                android:visibility="@{safeUnbox(viewmodel.spinnerVisibility), default=visible}"
                 app:SpinKit_Color="@color/colorAccent" android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
                 app:layout_constraintStart_toStartOf="parent"

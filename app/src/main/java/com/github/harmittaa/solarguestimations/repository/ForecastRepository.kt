@@ -1,21 +1,14 @@
 package com.github.harmittaa.solarguestimations.repository
 
-import com.github.harmittaa.solarguestimations.networking.RetrofitClient
 import com.github.harmittaa.solarguestimations.networking.WeatherForecastApi
-import java.text.SimpleDateFormat
-import java.util.*
+import org.koin.dsl.module
 
-class ForecastRepository {
-    private val client: WeatherForecastApi = RetrofitClient().forecastService
+val forecastModule = module {
+    single { provideForecastRepository(get()) }
+}
 
-    suspend fun getForecast() = client.getForecast()
+fun provideForecastRepository(weatherForecastApi: WeatherForecastApi) = ForecastRepository(weatherForecastApi)
 
-    private fun getDateWeekFromNow(): String {
-        val calendar = Calendar.getInstance()
-        calendar.time = Date()
-        calendar.add(Calendar.DATE, 7)
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'", Locale.getDefault())
-        dateFormat.timeZone = TimeZone.getDefault()
-        return dateFormat.format(Date())
-    }
+class ForecastRepository(private val weatherForecastApi: WeatherForecastApi) {
+    suspend fun getForecast() = weatherForecastApi.getForecast()
 }
