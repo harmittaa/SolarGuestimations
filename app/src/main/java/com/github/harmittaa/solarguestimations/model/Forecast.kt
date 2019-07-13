@@ -1,7 +1,6 @@
 package com.github.harmittaa.solarguestimations.model
 
 import com.google.gson.annotations.SerializedName
-import java.util.*
 
 data class Forecast(
     val weather: List<Weather>,
