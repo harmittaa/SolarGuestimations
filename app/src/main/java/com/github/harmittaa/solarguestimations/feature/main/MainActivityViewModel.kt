@@ -7,6 +7,11 @@ import com.github.harmittaa.solarguestimations.R
 import com.github.harmittaa.solarguestimations.persistence.ApiKeyPreferences
 import com.github.harmittaa.solarguestimations.persistence.Keys
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import org.koin.dsl.module
+
+val mainViewModelModule = module {
+    factory { MainActivityViewModel() }
+}
 
 class MainActivityViewModel : ViewModel() {
     private val remoteConfig = FirebaseRemoteConfig.getInstance() // todo! dagger

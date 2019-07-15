@@ -9,8 +9,7 @@ import org.koin.core.KoinComponent
 import org.koin.core.context.GlobalContext.get
 import org.koin.core.inject
 
-class ForecastViewModel() : ViewModel(), KoinComponent {
-    private val forecastRepository: ForecastRepository by inject()
+class ForecastViewModel(private val forecastRepository: ForecastRepository) : ViewModel() {
 
     val forecast: LiveData<Forecast> = liveData {
         emit(forecastRepository.getForecast())

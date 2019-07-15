@@ -20,11 +20,10 @@ import org.koin.dsl.module
 import timber.log.Timber
 
 val vmModule = module {
-    viewModel { ForecastViewModel() }
+    viewModel { ForecastViewModel(get()) }
 }
 
 class ForecastFragment : Fragment() {
-    //private val forecastViewModel by viewModels<ForecastViewModel>()
     val forecastViewModel: ForecastViewModel by viewModel()
 
     private val observer = Observer<Forecast> {
