@@ -20,13 +20,13 @@ android {
     buildTypes {
         debug {
             debuggable true
-            buildConfigField "String", "API_URL", "\"http://api.openweathermap.org/data/2.5/\""
+            buildConfigField "String", "API_URL", "\"https://api.openweathermap.org/data/2.5/\""
             minifyEnabled false
         }
 
         release {
             minifyEnabled false
-            buildConfigField("String", "API_URL", "http://api.openweathermap.org/data/2.5/")
+            buildConfigField("String", "API_URL", "https://api.openweathermap.org/data/2.5/")
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -70,4 +70,7 @@ dependencies {
     implementation "org.koin:koin-core:$koin_version"
 
     testImplementation "org.mockito:mockito-core:2.28.2"
+
+    implementation 'com.instabug.library:instabug:8.5.0'
+
 }
